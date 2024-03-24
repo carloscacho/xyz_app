@@ -1,11 +1,15 @@
-# Sample Snack app
+# XYZ APP
 
-Open the `App.js` file to start writing some code. You can preview the changes directly on your phone or tablet by scanning the **QR code** or use the iOS or Android emulators. When you're done, click **Save** and share the link!
+Um App de uma empresa ficticia que tem um login, e uma tela de cadastro de
+materiais. todos os dados fincam armazenados em banco de dados local 
 
-When you're ready to see everything that Expo provides (or if you want to use your own editor) you can **Download** your project and use it with [expo cli](https://docs.expo.dev/get-started/installation/#expo-cli)).
+## instalação e execução
+- faça o download do projeto
+- abra o arquivo config.js e altere a ip do servidor
+-- <pre>  baseURL: "http://192.168.100.37/empresa_xyz/" </pre>
+- rode o comando 
+- para rodar rode o comando 
+-- <pre> npm run dev </pre>
+-- utilize o app [expo](https://play.google.com/store/apps/details?id=host.exp.exponent&hl=pt_BR&gl=US) para testar o app
+-- leia o qrcode com app expo
 
-All projects created in Snack are publicly available, so you can easily share the link to this project via link, or embed it on a web page with the `<>` button.
-
-If you're having problems, you can tweet to us [@expo](https://twitter.com/expo) or ask in our [forums](https://forums.expo.dev/c/expo-dev-tools/61) or [Discord](https://chat.expo.dev/).
-
-Snack is Open Source. You can find the code on the [GitHub repo](https://github.com/expo/snack).
