@@ -9,7 +9,7 @@ materiais. todos os dados fincam armazenados em banco de dados local
 -- <pre>  baseURL: "http://192.168.100.37/empresa_xyz/" </pre>
 - rode o comando 
 - para rodar rode o comando 
--- <pre> npm run dev </pre>
+-- <pre> npm run start </pre>
 -- utilize o app [expo](https://play.google.com/store/apps/details?id=host.exp.exponent&hl=pt_BR&gl=US) para testar o app
 -- leia o qrcode com app expo
 

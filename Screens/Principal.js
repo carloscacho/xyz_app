@@ -18,7 +18,7 @@ export default function Principal({ navigation }) {
 }
 
 function ListaMaterias(props) {
-  const { materiais, loadMaterias, setNav, update, matCad, toggleUp } = React.useContext(MaterialContextGlobal)
+  const { materiais, loadMaterias, setNav, update, matCad, toggleUp, aviso } = React.useContext(MaterialContextGlobal)
 
   React.useEffect(() => {
     setNav(props.nav)
@@ -58,7 +58,7 @@ function LeftButtons(props) {
   const { delMaterial, toggleUp } = React.useContext(MaterialContextGlobal)
   return (
     <View style={{ flexDirection: 'row' }}>
-      <IconButton icon="pencil-outline" iconColor='#ffbc22' />
+      <IconButton onPress={() => editarMaterial()} icon="pencil-outline" iconColor='#ffbc22' />
       <IconButton onPress={() => deleteMaterial(props.id, delMaterial, toggleUp)} icon="delete-outline" iconColor='#ff2244' />
     </View>
   )
@@ -73,6 +73,10 @@ function deleteMaterial(id, delMaterial, toggleUp) {
     ])
   )
   
+}
+
+function editarMaterial(){
+  Alert.alert("O editar não feito", "Acabei deixando por ultimo")
 }
 
 const estilo = StyleSheet.create({
