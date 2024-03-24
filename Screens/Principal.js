@@ -18,12 +18,13 @@ export default function Principal({ navigation }) {
 }
 
 function ListaMaterias(props) {
-  const { materiais, loadMaterias, setNav, update } = React.useContext(MaterialContextGlobal)
+  const { materiais, loadMaterias, setNav, update, matCad, toggleUp } = React.useContext(MaterialContextGlobal)
 
   React.useEffect(() => {
     setNav(props.nav)
     loadMaterias()
-  }, [])
+    toggleUp()
+  }, [matCad])
 
   return (
     <View style={{ flex: 1 }}>

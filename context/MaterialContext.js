@@ -9,7 +9,8 @@ export default function MaterialContext(props) {
   const [quant, setQuant] = React.useState('');
   const [idUser, setIdUser] = React.useState('');
   const [nav, setNav] = React.useState(null)
-  const [update, setUpdate] = React.useState(false)
+  const [update, setUpdate] = React.useState(false);
+  const [matCad, setMatCad] = React.useState(false)
 
 
   const [materiais, setMateriais] = React.useState([])
@@ -28,8 +29,26 @@ export default function MaterialContext(props) {
 
   function limparStates() {
     setTitle("")
-    setIdUser("")
+    setQuant("")
   }
+
+  async function cadastrar(iduser){
+    const dados = qs.stringify({
+      'action': 'create',
+      'table': 'material',
+      'data[titulo]': title,
+      'data[quantidade]': quant,
+      'data[iduser]': iduser,
+    })
+    let resp = await API.post('/', dados);
+    console.log(resp.data);
+      const {success}  = resp.data;
+      if(success){
+        setMatCad(!matCad)
+      }
+
+  }
+
 
   async function delMaterial(id) {
     let dados = {
@@ -59,7 +78,9 @@ export default function MaterialContext(props) {
         setNav,
         delMaterial,
         update,
-        toggleUp
+        toggleUp,
+        cadastrar,
+        matCad
       }}>
       {props.children}
     </MaterialContextGlobal.Provider>

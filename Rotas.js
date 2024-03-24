@@ -22,7 +22,7 @@ const Stack = createStackNavigator();
 export default function Rotas() {
   return (
     <NavigationContainer theme={navTheme}>
-      <Stack.Navigator initialRouteName='main' screenOptions={{ headerShown: false }}>
+      <Stack.Navigator initialRouteName='login' screenOptions={{ headerShown: false }}>
         <Stack.Screen name="login" component={Login} />
         <Stack.Screen name="main" component={Principal} />
         <Stack.Screen name="cadastro" component={UserCadastro} />

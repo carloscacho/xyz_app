@@ -9,6 +9,7 @@ export default function UserContext(props) {
   const [email, setEmail] = React.useState('');
   const [senha, setSenha] = React.useState('');
   const [erroMsg, setErroMsg] = React.useState('')
+  const [userData, setUserData] = React.useState(null)
 
   const [logado, setLogado] = React.useState(false);
   const [cadastrado, setCadastrado] = React.useState(false);
@@ -29,9 +30,11 @@ export default function UserContext(props) {
       try {
         let resp = await API.post('/', new URLSearchParams(dados).toString());
         console.log(resp.data);
-        const { success } = resp.data
-        if (success)
+        const { success, user } = resp.data
+        if (success) {
           setLogado(true)
+          setUserData(user)
+        }
         else
           setErroMsg(resp.data.mensagem)
         // return user;
@@ -60,66 +63,68 @@ export default function UserContext(props) {
         'data[senha]': senha,
         'data[admin]': 0,
       })
-    try {
-      let resp = await API.post('/', dados);
-      console.log(resp.data);
-      const {success}  = resp.data;
-      if(success)
-        setCadastrado(true)
-      else
-      setErroMsg(resp.data.mensagem)
-    } catch (error) {
-      console.error('Erro ao cadastrar:', error);
-      // Trate o erro conforme necessário
+      try {
+        let resp = await API.post('/', dados);
+        console.log(resp.data);
+        const { success } = resp.data;
+
+        if (success)
+          setCadastrado(true)
+        else
+          setErroMsg(resp.data.mensagem)
+      } catch (error) {
+        console.error('Erro ao cadastrar:', error);
+        // Trate o erro conforme necessário
+      }
     }
+  };
+
+  function validarDadosCadastro() {
+    if (nome == "") {
+      setErroMsg("O nome está vazio")
+    } else if (email.length < 5 || email.match("@")) {
+      setErroMsg("Email invalido, no minimo deve ter um @")
+    } else if (senha.length < 6) {
+      setErroMsg("Senha menor que minimo requisitado")
+    } else {
+      return true
+    }
+    return false
   }
-};
 
-function validarDadosCadastro() {
-  if (nome == "") {
-    setErroMsg("O nome está vazio")
-  } else if (email.length < 5 || email.match("@")) { 
-    setErroMsg("Email invalido, no minimo deve ter um @")
-  } else if (senha.length < 6) {
-    setErroMsg("Senha menor que minimo requisitado")
-  } else {
-    return true
+  function validarDadosLogin() {
+    if (email.length < 5 || email.match("@") == null) {
+      setErroMsg("Email invalido, no minimo deve ter um @")
+    } else if (senha.length < 6) {
+      setErroMsg("Senha menor que minimo requisitado")
+    } else {
+      return true
+    }
+    return false;
   }
-  return false
-}
-
-function validarDadosLogin() {
-  if (email.length < 5 || email.match("@") == null) {
-    setErroMsg("Email invalido, no minimo deve ter um @")
-  } else if (senha.length < 6) {
-    setErroMsg("Senha menor que minimo requisitado")
-  } else {
-    return true
-  }
-  return false;
-}
 
 
-return (
-  <UserContextGlobal.Provider
-    value={{
-      nome,
-      setNome,
-      email,
-      setEmail,
-      senha,
-      setSenha,
-      logado,
-      showModal,
-      hideModal,
-      visible,
-      loginApp,
-      cadastroApp,
-      erroMsg,
-      cadastrado,
-      setErroMsg
-    }}>
-    {props.children}
-  </UserContextGlobal.Provider>
-);
+  return (
+    <UserContextGlobal.Provider
+      value={{
+        nome,
+        setNome,
+        email,
+        setEmail,
+        senha,
+        setSenha,
+        logado,
+        showModal,
+        hideModal,
+        visible,
+        loginApp,
+        cadastroApp,
+        erroMsg,
+        cadastrado,
+        setErroMsg,
+        userData
+      }}>
+      {props.children}
+    </UserContextGlobal.Provider>
+  );
 }

@@ -5,6 +5,7 @@ import { Text, TextInput, Button } from 'react-native-paper'
 import Header from '../components/Header'
 import BaseCard from '../components/BaseCard'
 import MaterialContext, { MaterialContextGlobal } from '../context/MaterialContext'
+import { UserContextGlobal } from '../context/UserContext'
 
 export default function AddMaterial({navigation}) {
   
@@ -19,8 +20,9 @@ export default function AddMaterial({navigation}) {
   )
 }
 
-function CardAddMaterial(){
+function CardAddMaterial(props){
   const { title, setTitle, quant, setQuant, cadastrar } = React.useContext(MaterialContextGlobal)
+  const { userData } = React.useContext(UserContextGlobal)
   return(
     <View style={estilos.container}>
     <BaseCard>
@@ -38,8 +40,8 @@ function CardAddMaterial(){
         onChangeText={(text) => setQuant(text)}
         mode="outlined"
       />
-      <Button style={estilos.btn} mode="contained" onPress={cadastrar}>Cadastrar Material</Button>
-      <Button style={estilos.btn} mode="outlined">Voltar</Button>
+      <Button style={estilos.btn} mode="contained" onPress={() => {cadastrar(userData.id); props.nav.goBack()}}>Cadastrar Material</Button>
+      <Button style={estilos.btn} mode="outlined" onPress={() => props.nav.goBack()} >Voltar</Button>
     </BaseCard>
   </View>
   )
