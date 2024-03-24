@@ -8,16 +8,13 @@ export default function MaterialContext(props) {
   const [title, setTitle] = React.useState('');
   const [quant, setQuant] = React.useState('');
   const [idUser, setIdUser] = React.useState('');
-  const [visible, setVisible] = React.useState(false);
+  const [nav, setNav] = React.useState(null)
 
 
   const [materiais, setMateriais] = React.useState([])
 
   const [matCadastrado, setMatCadastrado] = React.useState(false);
   
-  
-  const showDialog = () => setVisible(true);
-  const hideDialog = () => setVisible(false);
   async function loadMaterias() {
     let dados = {
       action: 'read',
@@ -43,11 +40,10 @@ export default function MaterialContext(props) {
         limparStates,
         materiais,
         loadMaterias,
-        showDialog,
-        hideDialog,
-        visible,
         quant,
-        setQuant
+        setQuant,
+        nav,
+        setNav
 
       }}>
       {props.children}

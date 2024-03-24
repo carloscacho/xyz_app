@@ -50,7 +50,7 @@ export default function UserCadastro({ navigation }) {
           mode="outlined"
         />
         <Button style={estilos.btn} onPress={() => cadastroApp()} mode="contained">Cadastrar</Button>
-        <Button style={estilos.btn} onPress={() => { navigation.goBack() }}>Cancelar</Button>
+        <Button style={estilos.btn} onPress={() => { navigation.goBack() }} mode="outlined">Cancelar</Button>
       </BaseCard>
     </View>
   );

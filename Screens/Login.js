@@ -44,7 +44,7 @@ export default function Login({ navigation }) {
           mode="outlined"
         />
         <Button style={estilos.btn} mode="contained" onPress={() => loginApp()}>Entrar</Button>
-        <Button style={estilos.btn} onPress={() => { navigation.navigate("cadastro") }}>Cadastrar</Button>
+        <Button style={estilos.btn} mode="outlined" onPress={() => { navigation.navigate("cadastro") }}>Cadastrar</Button>
       </BaseCard>
     </View>
   );

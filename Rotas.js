@@ -4,6 +4,10 @@ import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import Login from './Screens/Login';
 import Principal from './Screens/Principal';
 import UserCadastro from './Screens/UserCadastro';
+import AddMaterial from './Screens/AddMaterial';
+
+// context
+import MaterialContext from './context/MaterialContext';
 
 const navTheme = {
   ...DefaultTheme,
@@ -22,6 +26,7 @@ export default function Rotas() {
         <Stack.Screen name="login" component={Login} />
         <Stack.Screen name="main" component={Principal} />
         <Stack.Screen name="cadastro" component={UserCadastro} />
+        <Stack.Screen name="addMaterial" component={AddMaterial} />
       </Stack.Navigator>
     </NavigationContainer>
 
