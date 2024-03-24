@@ -4,38 +4,44 @@ import { Text, TextInput, Button } from 'react-native-paper'
 
 import Header from '../components/Header'
 import BaseCard from '../components/BaseCard'
-import { MaterialContextGlobal } from '../context/MaterialContext'
+import MaterialContext, { MaterialContextGlobal } from '../context/MaterialContext'
 
-export default function AddMaterial() {
-  const { title, setTitle, quant, setQuant, cadastrar } = React.useContext(MaterialContextGlobal)
+export default function AddMaterial({navigation}) {
+  
   return (
     <View>
       <Header title="Adicionar Material" />
-      <View style={estilos.container}>
-        <BaseCard>
-          <Text variant="displaySmall">Cadastrar novo material</Text>
-          <TextInput
-            label="Nome do Material"
-            value={title}
-            onChangeText={(text) => setTitle(text)}
-            mode="outlined"
-          />
-          <TextInput
-            label="Quantidade"
-            value={quant}
-            keyboardType='number-pad'
-            onChangeText={(text) => setQuant(text)}
-            mode="outlined"
-          />
-          <Button style={estilos.btn} mode="contained" onPress={cadastrar}>Cadastrar Material</Button>
-          <Button style={estilos.btn} mode="outlined">Voltar</Button>
-        </BaseCard>
-      </View>
-
-
-
+      <MaterialContext>
+        <CardAddMaterial nav={navigation} />
+      </MaterialContext>
     </View>
 
+  )
+}
+
+function CardAddMaterial(){
+  const { title, setTitle, quant, setQuant, cadastrar } = React.useContext(MaterialContextGlobal)
+  return(
+    <View style={estilos.container}>
+    <BaseCard>
+      <Text variant="displaySmall">Cadastrar novo material</Text>
+      <TextInput
+        label="Nome do Material"
+        value={title}
+        onChangeText={(text) => setTitle(text)}
+        mode="outlined"
+      />
+      <TextInput
+        label="Quantidade"
+        value={quant}
+        keyboardType='number-pad'
+        onChangeText={(text) => setQuant(text)}
+        mode="outlined"
+      />
+      <Button style={estilos.btn} mode="contained" onPress={cadastrar}>Cadastrar Material</Button>
+      <Button style={estilos.btn} mode="outlined">Voltar</Button>
+    </BaseCard>
+  </View>
   )
 }
 

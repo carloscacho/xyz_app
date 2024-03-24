@@ -9,12 +9,15 @@ export default function MaterialContext(props) {
   const [quant, setQuant] = React.useState('');
   const [idUser, setIdUser] = React.useState('');
   const [nav, setNav] = React.useState(null)
+  const [update, setUpdate] = React.useState(false)
 
 
   const [materiais, setMateriais] = React.useState([])
 
   const [matCadastrado, setMatCadastrado] = React.useState(false);
-  
+
+  const toggleUp = () => { setUpdate(!update) }
+
   async function loadMaterias() {
     let dados = {
       action: 'read',
@@ -30,6 +33,17 @@ export default function MaterialContext(props) {
     setIdUser("")
   }
 
+  async function delMaterial(id) {
+    let dados = {
+      action: 'read',
+      table: 'material',
+      id: id
+    }
+    let resp = await API.post("/", new URLSearchParams(dados).toString())
+    console.log(resp.data);
+    setMateriais(resp.data)
+  }
+
   return (
     <MaterialContextGlobal.Provider
       value={{
@@ -43,8 +57,10 @@ export default function MaterialContext(props) {
         quant,
         setQuant,
         nav,
-        setNav
-
+        setNav,
+        delMaterial,
+        update,
+        toggleUp
       }}>
       {props.children}
     </MaterialContextGlobal.Provider>
