@@ -48,7 +48,7 @@ function ItemMaterial({ item }) {
     <List.Item
       style={estilo.item}
       title={item.titulo}
-      description={item.iduser}
+      description={item.quantidade}
       right={() => <LeftButtons id={item.idmaterial} />}
     />
   )
