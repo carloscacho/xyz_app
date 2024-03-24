@@ -30,7 +30,7 @@ function ListaMaterias(props) {
       <FlatList
         data={materiais}
         renderItem={ItemMaterial}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item.idmaterial}
         extraData={update}
       />
 
@@ -48,7 +48,7 @@ function ItemMaterial({ item }) {
       style={estilo.item}
       title={item.titulo}
       description={item.iduser}
-      right={() => <LeftButtons id={item.id} />}
+      right={() => <LeftButtons id={item.idmaterial} />}
     />
   )
 }

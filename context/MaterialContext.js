@@ -14,8 +14,6 @@ export default function MaterialContext(props) {
 
   const [materiais, setMateriais] = React.useState([])
 
-  const [matCadastrado, setMatCadastrado] = React.useState(false);
-
   const toggleUp = () => { setUpdate(!update) }
 
   async function loadMaterias() {
@@ -35,13 +33,15 @@ export default function MaterialContext(props) {
 
   async function delMaterial(id) {
     let dados = {
-      action: 'read',
+      action: 'delete',
       table: 'material',
       id: id
     }
+
     let resp = await API.post("/", new URLSearchParams(dados).toString())
     console.log(resp.data);
-    setMateriais(resp.data)
+    loadMaterias()
+    
   }
 
   return (
@@ -50,7 +50,6 @@ export default function MaterialContext(props) {
         title,
         setTitle,
         idUser,
-        matCadastrado,
         limparStates,
         materiais,
         loadMaterias,
